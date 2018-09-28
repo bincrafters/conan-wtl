@@ -2,40 +2,30 @@
 # -*- coding: utf-8 -*-
 
 from conans import ConanFile, tools
-import os
 
 
-class LibnameConan(ConanFile):
-    name = "libname"
-    version = "0.0.0"
-    url = "https://github.com/bincrafters/conan-libname"
+class WTLConan(ConanFile):
+    name = "wtl"
+    version = "10.0.7336"
+    url = "https://github.com/bincrafters/conan-wtl"
     author = "Bincrafters <bincrafters@gmail.com>"
-    description = "Keep it short"
+    description = "Windows Template Library (WTL) is a C++ library for developing Windows applications and UI " \
+                  "components. It extends ATL (Active Template Library) and provides a set of classes for controls, " \
+                  "dialogs, frame windows, GDI objects, and more."
     no_copy_source = True
-
-    # Indicates License type of the packaged library
-    license = "MIT"
-
-    # Packages the license for the conanfile.py
+    license = "Common Public License"
     exports = ["LICENSE.md"]
-
-    # Custom attributes for Bincrafters recipe conventions
-    source_subfolder = "source_subfolder"
+    settings = {'os': ['Windows']}
 
     def source(self):
-        source_url = "https://github.com/libauthor/libname"
-        tools.get("{0}/archive/v{1}.tar.gz".format(source_url, self.version))
-        extracted_dir = self.name + "-" + self.version
-
-        #Rename to "source_folder" is a convention to simplify later steps
-        os.rename(extracted_dir, self.source_subfolder)
-
+        major, _, build = self.version.split('.')
+        source_url = "https://datapacket.dl.sourceforge.net/project/wtl/WTL%20{major}/WTL%20{version}/" \
+                     "WTL{major}_{build}.zip".format(major=major, build=build, version=self.version)
+        tools.get(source_url)
 
     def package(self):
-        include_folder = os.path.join(self.source_subfolder, "include")
-        self.copy(pattern="LICENSE", dst="license", src=self.source_subfolder)
-        self.copy(pattern="*", dst="include", src=include_folder)
-
+        self.copy(pattern="MS-PL.TXT", dst="license", src=".")
+        self.copy(pattern="*", dst="include", src="Include")
 
     def package_id(self):
         self.info.header_only()
