@@ -5,7 +5,6 @@ class WTLConan(ConanFile):
     name = "wtl"
     version = "10.0.7336"
     url = "https://github.com/bincrafters/conan-wtl"
-    author = "Bincrafters <bincrafters@gmail.com>"
     description = "Windows Template Library (WTL) is a C++ library for developing Windows applications and UI " \
                   "components. It extends ATL (Active Template Library) and provides a set of classes for controls, " \
                   "dialogs, frame windows, GDI objects, and more."
