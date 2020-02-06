@@ -3,7 +3,7 @@ from conans import ConanFile, tools
 
 class WTLConan(ConanFile):
     name = "wtl"
-    version = "10.0.7336"
+    version = "10.0.9163"
     url = "https://github.com/bincrafters/conan-wtl"
     description = "Windows Template Library (WTL) is a C++ library for developing Windows applications and UI " \
                   "components. It extends ATL (Active Template Library) and provides a set of classes for controls, " \
@@ -15,7 +15,7 @@ class WTLConan(ConanFile):
 
     def source(self):
         major, _, build = self.version.split('.')
-        source_url = "https://datapacket.dl.sourceforge.net/project/wtl/WTL%20{major}/WTL%20{version}/" \
+        source_url = "https://netcologne.dl.sourceforge.net/project/wtl/WTL%20{major}/WTL%20{version}/" \
                      "WTL{major}_{build}.zip".format(major=major, build=build, version=self.version)
         tools.get(source_url)
 
